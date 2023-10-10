@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 
-export default function NewsPost({ post, handleReadNews }) {
+export default function NewsPost({ post, handleReadNews = true }) {
 	function setReadNews() {
 		handleReadNews(post);
 	}
@@ -25,8 +25,8 @@ export default function NewsPost({ post, handleReadNews }) {
 					{post.description}
 				</p>
 				<Link
-					onClick={setReadNews}
 					to={post.link}
+					onClick={handleReadNews ? setReadNews : null}
 					target="_blank"
 					className=" inline-flex sm:absolute sm:bottom-5  items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
 				>

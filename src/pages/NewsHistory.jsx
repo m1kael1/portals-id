@@ -9,20 +9,13 @@ import filterNews from "../utils/filterNews";
 import { motion } from "framer-motion";
 
 export default function NewsHistory() {
-	const { data, setData } = useLocalStorage();
+	const { data } = useLocalStorage();
 	const { readNews } = data;
 	const [searchQuery, setSearchQuery] = useState("");
 	const { filteredNews } = filterNews(readNews, searchQuery);
 
 	function search(query) {
 		setSearchQuery(query);
-	}
-
-	function handleReadNews(news) {
-		const filteredReadNews = data.readNews.filter(
-			(item) => item.title !== news.title
-		);
-		setData({ ...data, readNews: [news, ...filteredReadNews] });
 	}
 
 	return (
@@ -48,11 +41,7 @@ export default function NewsHistory() {
 								custom={index}
 								key={index}
 							>
-								<NewsPost
-									key={index}
-									post={news}
-									handleReadNews={handleReadNews}
-								/>
+								<NewsPost key={index} post={news} handleReadNews={false} />
 							</motion.div>
 						))
 					)}
