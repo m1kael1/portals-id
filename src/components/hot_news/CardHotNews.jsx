@@ -15,7 +15,7 @@ export default function CardHotNews({
 				subContent ? "sm:hover:scale-110 " : "sm:hover:scale-105"
 			}`}
 		>
-			<Link to={news?.Link} target="_blank" onClick={setReadNews}>
+			<Link to={news?.link} target="_blank" onClick={setReadNews}>
 				<img
 					src={news?.thumbnail}
 					className="w-full h-full object-cover group-hover:scale-110 transition-all ease "
