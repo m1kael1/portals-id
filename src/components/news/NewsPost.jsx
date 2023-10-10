@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 
-export default function NewsPost({ post }) {
+export default function NewsPost({ post, handleReadNews }) {
+	function setReadNews() {
+		handleReadNews(post);
+	}
 	return (
 		<div className="w-full sm:h-full sm:relative bg-white border  border-gray-200 rounded-lg shadow ">
-			<Link to={post.Link}>
-				<img
-					className="rounded-t-lg w-full"
-					src={post.thumbnail}
-					alt={post.title}
-				/>
-			</Link>
+			<img
+				className="rounded-t-lg w-full"
+				src={post.thumbnail}
+				alt={post.title}
+			/>
+
 			<div className="p-5">
-				<Link to={post.Link}>
-					<h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 font-poppins ">
-						{post.title}
-					</h2>
-				</Link>
+				<h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 font-poppins ">
+					{post.title}
+				</h2>
 				<pre className="text-gray-900 font-poppins text-sm mb-1">
 					{formatDate(post.pubDate)}
 				</pre>
@@ -25,7 +25,9 @@ export default function NewsPost({ post }) {
 					{post.description}
 				</p>
 				<Link
+					onClick={setReadNews}
 					to={post.link}
+					target="_blank"
 					className=" inline-flex sm:absolute sm:bottom-5  items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
 				>
 					Baca Berita

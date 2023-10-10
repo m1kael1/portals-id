@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "../hooks/useLocalSotrage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Landing() {
-	const { portalsData, setPortalsData } = useLocalStorage();
+	const { data, setData } = useLocalStorage();
 	const navigate = useNavigate();
 
 	function handleGetStarted() {
-		setPortalsData({ ...portalsData, status: true });
+		setData({ ...data, status: true });
 		navigate(0);
 	}
 

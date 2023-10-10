@@ -3,12 +3,21 @@ import HotNewsLayout, { SubLayout } from "../../layouts/HotNewsLayout";
 import CardHotNews from "./CardHotNews";
 import { motion } from "framer-motion";
 import { fadeInFromBottom } from "../../libs/variants";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 export default function HotNews() {
 	const portal = "cnn";
 	const category = "terbaru";
 	const catergoryUrl = `${portal}/${category}`;
 	const { news } = useNews(catergoryUrl);
+	const { data, setData } = useLocalStorage();
+
+	function handleReadNews(news) {
+		const filteredReadNews = data.readNews.filter(
+			(item) => item.title !== news.title
+		);
+		setData({ ...data, readNews: [news, ...filteredReadNews] });
+	}
 
 	return (
 		<>
@@ -21,7 +30,7 @@ export default function HotNews() {
 						initial={"initial"}
 						custom={index}
 					>
-						<CardHotNews news={news} />
+						<CardHotNews news={news} handleReadNews={handleReadNews} />
 					</motion.div>
 				))}
 				<SubLayout>
@@ -33,7 +42,11 @@ export default function HotNews() {
 							initial={"initial"}
 							custom={index + 1}
 						>
-							<CardHotNews subContent={true} news={news} />
+							<CardHotNews
+								subContent={true}
+								news={news}
+								handleReadNews={handleReadNews}
+							/>
 						</motion.div>
 					))}
 				</SubLayout>
@@ -47,7 +60,11 @@ export default function HotNews() {
 							initial={"initial"}
 							custom={index + 5}
 						>
-							<CardHotNews subContent={true} news={news} />
+							<CardHotNews
+								subContent={true}
+								news={news}
+								handleReadNews={handleReadNews}
+							/>
 						</motion.div>
 					))}
 				</SubLayout>
@@ -59,7 +76,7 @@ export default function HotNews() {
 						initial={"initial"}
 						custom={index + 9}
 					>
-						<CardHotNews news={news} />
+						<CardHotNews news={news} handleReadNews={handleReadNews} />
 					</motion.div>
 				))}
 			</HotNewsLayout>

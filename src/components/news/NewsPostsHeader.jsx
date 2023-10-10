@@ -30,9 +30,17 @@ export default function NewsPostsHeader({
 				custom={4}
 				className="flex items-center gap-2"
 			>
-				<img width={70} src={portalLogoUrl} alt="" />
+				{portalLogoUrl ? (
+					<>
+						<img width={60} src={portalLogoUrl} alt="" />{" "}
+						<p className="uppercase font-poppins font-medium tracking-widest text-3xl">
+							|
+						</p>
+					</>
+				) : null}
+
 				<h1 className="uppercase font-poppins font-medium tracking-widest text-3xl">
-					{searchQuery ? `| ${category} | ${searchQuery}` : `| ${category}`}
+					{searchQuery ? `${category} | ${searchQuery}` : `${category}`}
 				</h1>
 			</motion.div>
 			<motion.div

@@ -7,6 +7,8 @@ import NewsPostLayout from "../layouts/NewsPostLayout";
 import NewsPostsHeader from "../components/news/NewsPostsHeader";
 import { motion } from "framer-motion";
 import { fadeInFromBottom } from "../libs/variants";
+import useLocalStorage from "../hooks/useLocalStorage";
+import filterNews from "../utils/filterNews";
 
 export default function News() {
 	const { portal, category } = useParams();
@@ -14,23 +16,26 @@ export default function News() {
 	const { loading, news } = useNews(catergoryUrl);
 	const [searchQuery, setSearchQuery] = useState("");
 	const newsPosts = news?.data?.posts;
+	const { data, setData } = useLocalStorage();
+	const { filteredNews } = filterNews(newsPosts, searchQuery);
 
 	function search(query) {
 		setSearchQuery(query);
 	}
 
-	const filter = newsPosts?.filter(
-		(posts) =>
-			posts.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			posts.description.toLowerCase().includes(searchQuery.toLowerCase())
-	);
+	function handleReadNews(news) {
+		const filteredReadNews = data.readNews.filter(
+			(item) => item.title !== news.title
+		);
+		setData({ ...data, readNews: [news, ...filteredReadNews] });
+	}
 
 	function showNewsPost() {
 		if (loading) {
 			return <p>Loading...</p>;
 		}
 		if (news.success) {
-			if (filter.length === 0) {
+			if (filteredNews.length === 0) {
 				return (
 					<>
 						<NewsPostsHeader
@@ -39,7 +44,7 @@ export default function News() {
 							category={category}
 							searchQuery={searchQuery}
 						/>
-						<p>"{searchQuery}" Tidak Ditemukan</p>
+						<p>Kata kunci "{searchQuery}" tidak ditemukan</p>
 					</>
 				);
 			}
@@ -52,7 +57,7 @@ export default function News() {
 						searchQuery={searchQuery}
 					/>
 					<NewsPostLayout>
-						{filter.map((value, index) => (
+						{filteredNews.map((news, index) => (
 							<motion.div
 								variants={fadeInFromBottom}
 								initial="initial"
@@ -60,7 +65,7 @@ export default function News() {
 								custom={index}
 								key={index}
 							>
-								<NewsPost post={value} />
+								<NewsPost post={news} handleReadNews={handleReadNews} />
 							</motion.div>
 						))}
 					</NewsPostLayout>

@@ -17,9 +17,9 @@ export default function Header() {
 					<NavLink to="/" className="text-xl font-poppins">
 						Beranda
 					</NavLink>
-					{/* <NavLink to="/news-history" className="text-xl font-poppins">
+					<NavLink to="/news-history" className="text-xl font-poppins">
 						Riwayat
-					</NavLink> */}
+					</NavLink>
 				</ul>
 			</section>
 		</motion.header>
