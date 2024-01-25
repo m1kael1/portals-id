@@ -1,7 +1,7 @@
 import MainLayout from "../layouts/MainLayout";
 import { useState } from "react";
-import ProfileHeader from "../components/profile/ProfileHeader";
-import ViewControl from "../components/profile/ViewControl";
+import ProfileHeader from "../components/Profile/ProfileHeader";
+import ViewControl from "../components/Profile/ViewControl";
 import ViewPosts from "../components/Profile/ViewPosts";
 import NewsHistory from "../components/Profile/NewsHistory";
 
