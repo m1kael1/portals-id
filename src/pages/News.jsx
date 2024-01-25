@@ -8,7 +8,7 @@ import { fadeInFromBottom } from "../libs/variants";
 import useLocalStorage from "../hooks/useLocalStorage";
 import filterNews from "../utils/filterNews";
 import NewsPost from "../components/News/NewsPost";
-import NewsPostsHeader from "../components/news/NewsPostsHeader";
+import NewsPostsHeader from "../components/News/NewsPostsHeader";
 
 export default function News() {
 	const { portal, category } = useParams();
