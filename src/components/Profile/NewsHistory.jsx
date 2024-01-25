@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NewsPost from "../News/NewsPost";
-import NewsPostsHeader from "../Nnews/NewsPostsHeader";
+import NewsPostsHeader from "../News/NewsPostsHeader";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import NewsPostLayout from "../../layouts/NewsPostLayout";
 import { fadeInFromBottom } from "../../libs/variants";
