@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import useNews from "../hooks/useNews";
 import MainLayout from "../layouts/MainLayout";
 import NewsPostLayout from "../layouts/NewsPostLayout";
-import NewsPostsHeader from "../components/news/NewsPostsHeader";
 import { motion } from "framer-motion";
 import { fadeInFromBottom } from "../libs/variants";
 import useLocalStorage from "../hooks/useLocalStorage";
 import filterNews from "../utils/filterNews";
 import NewsPost from "../components/news/NewsPost";
+import NewsPostsHeader from "../components/news/NewsPostsHeader";
 
 export default function News() {
 	const { portal, category } = useParams();
