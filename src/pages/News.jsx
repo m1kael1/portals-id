@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { fadeInFromBottom } from "../libs/variants";
 import useLocalStorage from "../hooks/useLocalStorage";
 import filterNews from "../utils/filterNews";
-import NewsPost from "../components/news/NewsPost";
+import NewsPost from "../components/News/NewsPost";
 import NewsPostsHeader from "../components/news/NewsPostsHeader";
 
 export default function News() {
