@@ -1,12 +1,10 @@
-import { motion } from "framer-motion";
 import { fadeInFromLeft } from "../../libs/variants";
-import Button from "../common/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Label from "../common/Label";
 import { useState } from "react";
 import Modals from "./Modals";
 import { BsTrash3 } from "react-icons/bs";
+import { Motion } from "../motion/Motion";
 
 const CardPost = ({ index, article, handleEditArticle }) => {
 	const [openModals, setOpenModals] = useState(false);
@@ -29,10 +27,8 @@ const CardPost = ({ index, article, handleEditArticle }) => {
 	};
 
 	return (
-		<motion.div
+		<Motion
 			variants={fadeInFromLeft}
-			initial="initial"
-			animate="animate"
 			custom={index}
 			className="max-w-7xl relative"
 		>
@@ -87,7 +83,7 @@ const CardPost = ({ index, article, handleEditArticle }) => {
 					/>
 				</div>
 			)}
-		</motion.div>
+		</Motion>
 	);
 };
 

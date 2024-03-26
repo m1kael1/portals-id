@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import { ListPortalLayout } from "../layouts/ListPortalLayout";
-import { fadeInFromLeft } from "../libs/variants";
+import { fadeInFromTop } from "../libs/variants";
 import Category from "./ListPortal/Category";
+import { Motion } from "./motion/Motion";
 
 export const portals = ["cnn", "antara", "sindonews", "okezone", "cnbc"];
 
@@ -11,15 +11,9 @@ export default function ListPortal({ news }) {
 			{news?.endpoints?.map((value, index) => {
 				return (
 					portals.includes(value.name) && (
-						<motion.div
-							key={index}
-							variants={fadeInFromLeft}
-							animate={"animate"}
-							initial={"initial"}
-							custom={index}
-						>
+						<Motion key={index} variants={fadeInFromTop} custom={index}>
 							<Category portal={value} />
-						</motion.div>
+						</Motion>
 					)
 				);
 			})}

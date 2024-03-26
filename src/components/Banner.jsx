@@ -2,10 +2,11 @@ import { portals } from "./ListPortal";
 import { fadeInFromBottom, fadeInFromLeft } from "../libs/variants";
 import { motion } from "framer-motion";
 import { AiOutlineArrowDown } from "react-icons/ai";
+import { Motion } from "./motion/Motion";
 
 const Banner = ({ hash }) => {
 	return (
-		<div className="flex flex-col lg:flex-row justify-center w-full h-screen items-center bg-slate-200 relative px-3 py-2 gap-2 lg:gap-0">
+		<div className="flex flex-col lg:flex-row justify-center w-full h-screen items-center relative px-3 py-2 gap-2 lg:gap-0">
 			<a
 				href={`#${hash}`}
 				className="z-[55] absolute bottom-11 animate-bounce text-white lg:text-red-600 text-3xl "
@@ -20,13 +21,16 @@ const Banner = ({ hash }) => {
 				custom={2}
 				className="w-full max-w-[500px] h-[500px] bg-slate-400 z-50 rounded-tr-[10%] rounded-bl-[10%] overflow-hidden shadow-2xl "
 			>
-				<img
-					className="w-full h-full object-cover"
-					src="https://media.istockphoto.com/id/1407890983/id/vektor/surat-kabar-latar-belakang-ilustrasi-vektor-realistis-dari-judul-halaman-dan-sampul-tata.jpg?s=612x612&w=0&k=20&c=CMPdqkJpfQUJJ2J5AZhOV1dtt7cbWDYMFVSCKD5PNPE="
-					alt=""
-				/>
+				<div>
+					<iframe
+						width={500}
+						height={500}
+						allowFullScreen={true}
+						src="https://lottie.host/embed/0748b898-a4f2-4b43-bd69-37cdcc88361f/86Eo08PhUq.json"
+					></iframe>
+				</div>
 			</motion.div>
-			<ul className="flex lg:justify-end max-w-[480px] flex-wrap gap-x-3 items-center justify-start z-50">
+			<ul className="flex lg:justify-end max-w-[480px] flex-wrap gap-x-3 items-center justify-start z-50 sm:gap-2">
 				{portals.map((portal, index) => {
 					const portalLogoUrl =
 						portal === "cnn"
@@ -41,12 +45,7 @@ const Banner = ({ hash }) => {
 							? "https://play-lh.googleusercontent.com/R_GVBSv9f06SmakbDsgi40QI7hJgK1WXgYToAHhTCYP91HAZiXFhpWS1Rog-gjUBGnw=w240-h480-rw"
 							: null;
 					return (
-						<motion.div
-							variants={fadeInFromBottom}
-							initial="initial"
-							animate="animate"
-							custom={index}
-						>
+						<Motion key={index} variants={fadeInFromBottom} custom={index}>
 							<div
 								className={` text-5xl lg:text-6xl font-laviossa text-slate-300 font-semibold opacity-80  capitalize 
 								hover:text-6xl lg:hover:text-7xl  cursor-pointer hover:font-bold hover:text-white relative group hover:opacity-100 transition-all`}
@@ -61,7 +60,7 @@ const Banner = ({ hash }) => {
 									alt=""
 								/>
 							</div>
-						</motion.div>
+						</Motion>
 					);
 				})}
 			</ul>

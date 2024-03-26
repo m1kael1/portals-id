@@ -6,6 +6,7 @@ import NewsPostLayout from "../../layouts/NewsPostLayout";
 import { fadeInFromBottom } from "../../libs/variants";
 import filterNews from "../../utils/filterNews";
 import { motion } from "framer-motion";
+import { Motion } from "../motion/Motion";
 
 export default function NewsHistory() {
 	const { data } = useLocalStorage();
@@ -32,15 +33,9 @@ export default function NewsHistory() {
 						<p>Kata kunci "{searchQuery}" tidak ditemukan</p>
 					) : (
 						filteredNews.map((news, index) => (
-							<motion.div
-								variants={fadeInFromBottom}
-								initial="initial"
-								animate="animate"
-								custom={index}
-								key={index}
-							>
+							<Motion variants={fadeInFromBottom} custom={index} key={index}>
 								<NewsPost key={index} post={news} handleReadNews={false} />
-							</motion.div>
+							</Motion>
 						))
 					)}
 				</NewsPostLayout>
